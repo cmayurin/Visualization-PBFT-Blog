@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="PBFT Visualization" />
+        <meta name="author" content="PBFT Visualization" />
+        <title>PBFT Visualization</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <style>
+            @media screen and (min-width: 676px) {
+                .modal-dialog {
+                  max-width: 1000px; /* New width for default modal */
+                }
+            }
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#Blockchain">Blockchain</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#PBFT">PBFT Algorithm</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Design">Visualization Design</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#road">Roadmap</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">Welcome To Our PBFT Visualization Blog</div>
+                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
+            </div>
+        </header>
+        <!-- Blockchain-->
+        <section class="page-section" id="Blockchain">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Blockchain</h2>
+                </div>
+                <p style="text-align:center;"><img src="assets/img/Practical-Byzantine-Fault-Tolerance.jpg" width="1000" height="420"></p>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <h4 class="my-3">What is Blockchain?</h4>
+                        <p class="text-muted">Blockchain is a decentralised and distributed system that has a continuous list of transactions stored in blocks in a linked list format. Each block contains a hash of the previous block, a timestamp and transaction data. Blockchains are managed by individual nodes, generally referred to as Replicas. These nodes internally follow different protocols to communicate and validate new blocks.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="my-3">Blockchain Protocols</h4>
+                        <p class="text-muted">There have been many Byzantine fault tolerant consensus protocols (BFT) proposed over the years to result in better throughput and latency. In real world, adversarial attacks are a real concern and hence for a reliable consensus protocol it is very important to have higher resilience to faulty/byzantine behaviour of nodes.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="my-3">Blockchain Applications</h4>
+                        <p class="text-muted">
+                            <p>Cryptocurrency - Major applications build on blockchain technology such as Bitcoin, Etherium etc.</p>
+                            <p>Financial services - Many banks are investing to use distributed ledger for banking by creating private blockchains for increase in efficiency along with reduction in cost</p>
+                            <p>Supply chain - Retailers and consumers can use blockchain technology to track their products from warehouses to stores. Many retailers have started building backend blockhain system to manage their supply chain.</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page-section" id="PBFT">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">PBFT (Practical-Byzantine-Fault-Tolerance) Protocol</h2>
+                </div>
+                    <p style="text-align:center;"><img src="https://appinventiv.com/wp-content/uploads/sites/1/2019/10/A-Guide-to-Understand-Blockchain-Consensus-Algorithms.gif" alt="" width="800"></p>
+                    <p>PBFT consensus protocol is the most basic BFT protocol based on voting which was proposed in the late 90s. It was designed to be able to tolerate a fixed fraction of malicious nodes in the network and still be able to reach consensus on a transaction proposed.</p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <h3>Algorithm Design</h3>
+                    <p>PBFT protocol is executed with a number of nodes ‘n’, where n>=3f + 1 and f is the number of byzantine nodes. One of the nodes acts as the primary node with some additional responsibilities. When the client sends a digitally signed transaction to a primary replica (which is elected by all other replicas in the block chain), it is responsible to coordinate, assign sequence number and send the ordered requests to all the other nodes called replicas (R1, R2 and R3). This phase is known as the ‘pre-prepare phase’. Now all the replicas send the pre-prepare message they received from primary to all the other replicas (including the primary node). This phase is known as the ‘prepare phase’. By the end of the prepare phase, all the good replicas would be able to know that the majority of other replicas have received the same transaction as they did and hence go ahead and prepare themselves for the commit. All the good replicas now create a ‘prepare certificate’ and send it to all the other replicas (including the primary). Hence, by the end of the commit phase if the majority of replicas send the same prepare certificate, all the good replicas will know that not only is there a majority of replicas who have received the same transaction but all the other good replicas have also sent the same prepare certificate. Hence consensus is reached for the given transaction, so replicas go ahead and execute the transaction and all the replicas including the primary reply to the client acknowledging the transaction.</p>
+                    <p style="text-align:center;"><img src="assets/img/PBFT.jpg" width="800" height="350" alt="Pbft"></p>
+                    <h3>View Change</h3>
+                    <p>If the majority replicas didn’t send the same transaction by the end of prepare phase as the one a particular replica did (For e.g.: R1), R1 detects that primary is faulty and does not send the prepare certificate and instead it sends a view change request to replace the existing primary. Hence whenever there is some malicious behaviour of primary detected, nodes send view change requests. When enough votes representing majority (2/3rd) are received for view change, the existing primary is replaced with a new primary and the process repeats until an honest primary is elected and is working properly.</p>
+                    <p></p>
+                    <h3>Advantages and Applications</h3>
+                        <ul>
+                            <li>Tolerates a fixed fraction of byzantine behaviourcin the network which makes it reliable</li>
+                            <li>Risk of centralization is removed and lower energy utilization to add a new block</li>
+                            <li>Cryptocurrency platforms such as 'Zilliqa' use PBFT along with PoW consensus.</li>
+                        </ul>
+                        <p>To overcome the drawback to scalability due to communication overhead of O(n^2), many new variants of PBFT have been proposed such as Zyzzyva, RBFT which were build on top of the traditional protocol.</p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+            </div>
+        </section>
+        <!-- Design Grid-->
+        <section class="page-section bg-light" id="Design">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Visualization Design</h2>
+                    <h3 class="section-subheading text-muted"></h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Design item 1-->
+                        <div class="Design-item">
+                            <a class="Design-link" data-bs-toggle="modal" href="#DesignModal1">
+                                <div class="Design-hover">
+                                    <div class="Design-hover-content"></div>
+                                </div>
+                                <img class="img-fluid" src="assets/img/Design/1.jpg" alt="..." />
+                            </a>
+                            <div class="Design-caption">
+                                <div class="Design-caption-heading"><B>Technical Approach</B></div>
+                                <div class="Design-caption-subheading text-muted">Details on the 2-tier architecture of the dashboard developed</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Design item 2-->
+                        <div class="Design-item">
+                            <a class="Design-link" data-bs-toggle="modal" href="#DesignModal2">
+                                <div class="Design-hover">
+                                    <div class="Design-hover-content"></div>
+                                </div>
+                                <img class="img-fluid" src="assets/img/Design/2.jpg" alt="..."/>
+                            </a>
+                            <div class="Design-caption">
+                                <div class="Design-caption-heading"><B>ResilientDB</B></div>
+                                <div class="Design-caption-subheading text-muted">Research on ResilientDB using Docker and Google Cloud Instances</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Design item 3-->
+                        <div class="Design-item">
+                            <a class="Design-link" data-bs-toggle="modal" href="#DesignModal3">
+                                <div class="Design-hover">
+                                    <div class="Design-hover-content"></div>
+                                </div>
+                                <img class="img-fluid" src="assets/img/Design/3.jpg" alt="..." />
+                            </a>
+                            <div class="Design-caption">
+                                <div class="Design-caption-heading"><B>Open source PBFT</B></div>
+                                <div class="Design-caption-subheading text-muted">Building visualization on an open source PBFT protocol</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Roadmap-->
+        <section class="page-section" id="road">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Roadmap</h2>
+                    <h3 class="section-subheading text-muted">Would like to know how PBFT-Visualization project was developed by our team?</h3>
+                </div>
+                <ul class="timeline">
+                    <li>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>29th Sep 21 - 4th Oct 21</h4>
+                                <h4 class="subheading">Project Topic Selection</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Team came up with the idea to develop visualization of existing BFT protocol to help users understand the working of the protocol. Initial plan was to develop visualization on ResilientDB dashboard built on top of ResilientDB PBFT implementation.</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>5th Oct 21 - 20 Oct 21</h4>
+                                <h4 class="subheading">ResilientDB-Docker POC Work</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Team started to set up and understand the flow of ResilientDB dashboard from frontend to backend. Tried to establish connection between docker container from a host using python docker packages.</p></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/3.jpg" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>21th Oct 21 - 29 Oct 21</h4>
+                                <h4 class="subheading">ResilientDB-Google Cloud Instances POC Work</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Since using Docker to get the data to build front end was getting complicated, we shifted our analysis to Google Cloud Instances. Team started to connect to instances through the host to understand how the underlying bash scripts work. But considering the timeframe ahead for completion of this project, the team parallely started to look for independent stable open sourse PBFT implementations.</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/4.jpg" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>30 Oct 21 - 30 Nov 21</h4>
+                                <h4 class="subheading">Build Visualization on open source PBFT implementation</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">With continued parallel learning of hosting ResilientDB dashboard using GCPs, team started to work on building visualization on top of an open source PFBT implementation from GitHub. Team was divided to work on front end, back end and blog development.</p></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="timeline-image">
+                            <h4>
+                                Future
+                                <br />
+                                Work !!
+                                <br />
+                            </h4>
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>Possible future work on top of existing application</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">
+                                <ul>
+                                    <li>Simulation of the byzantine behaviour</li>
+                                    <li>Extending the existing visualization to other open source BFT protocols</li>
+                                    <li>Scaling up visualization when number of replicas is too large</li>
+                                </ul>
+                            </p></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- Team-->
+        <section class="page-section bg-light" id="team">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+                    <h3 class="section-subheading text-muted">All the team members are Computer Science Masters students from University of California, Davis, USA.</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                            <h4>Kalyan Valiveti</h4>
+                            <p class="text-muted">Graduate Student(Computer Science)</p>
+                            <p class="text-muted">kvaliveti@ucdavis.edu</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/kalyanvaliveti/"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
+                            <h4>Baadal Bhojak</h4>
+                            <p class="text-muted">Graduate Student(Computer Science)</p>
+                            <p class="text-muted">babhojak@ucdavis.edu</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/baadal-bhojak/"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
+                            <h4>Pon Izhanathi S</h4>
+                            <p class="text-muted">Graduate Student(Computer Science)</p>
+                            <p class="text-muted">natsu@ucdavis.edu</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/izhanathi/"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/4.jpg" alt="..." />
+                            <h4>Chalmuri Mayuri Naidu</h4>
+                            <p class="text-muted">Graduate Student(Computer Science)</p>
+                            <p class="text-muted">cnaidu@ucdavis.edu</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/chalmuri-mayuri-naidu-855341a9/"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/5.jpg" alt="..." />
+                            <h4>Rajat Jalal</h4>
+                            <p class="text-muted">Graduate Student(Computer Science)</p>
+                            <p class="text-muted">rjalal@ucdavis.edu</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/rajat-jalal/"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted"></p></div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="col-md-4">
+                    <div class= "text-uppercase ms-auto py-4 py-lg-0">
+                        <p>&nbsp;</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#team"><B>Contact_Us</B></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.vldb.org/pvldb/vol13/p2893-rahnama.pdf"><B>ResilientDB_Research_Paper</B></a></p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://resilientdb.com/"><B>ResilientDB_Blog</B></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/iCloud17/PBFT-Visualization"><B>Github_URL_for_Visualization_Project</B></a></p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""><B>Github_URL_for_Blog</B></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/soumyaxyz/Python-PBFT-Blockchain"><B>Github_URL_for_Open_Source_PBFT_Implementation</B></a></p>
+                        <script src="https://apis.google.com/js/platform.js"></script>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Design Modals-->
+        <!-- Design item 1 modal popup-->
+        <div class="Design-modal modal fade" id="DesignModal1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><p style="text-align:right;"><img src="assets/img/close-icon.svg" width="35" height="35" alt="Close modal"/></p></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Technical approach details-->
+                                    <h2 class="text-uppercase" style="text-align:center;">Technical Approach</h2>
+                                    <p></p>
+                                    <p></p>
+                                    <p class="item-intro text-muted">A dashboard is built which depicts how the request is being propagated between the replicas in the network including the transition during each phase when a PBFT protocol runs. A new feature is also added to visualize the blockchain as new transactions are processed and blocks are added.</p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/Blockchain.JPG" alt="..." />
+                                    <p>A 2-tier architecture of the dashboard was built which comprise of :</p>
+                                    <ul>
+                                        <li><h3>Presentation Layer or User Interface</h3></li>
+                                        <p></p>
+                                        <p>A presentation layer is the user interface and communication layer of the application which is used by end-users to interact with applications. This layer is responsible for displaying and collecting data from the end-users and sending it to the business layer.  For the proposed dashboard, this top-level layer is developed using HTML, CSS and Javascript/React which is capable of running on any web browser. </p>
+                                        <p>To understand how the PBFT protocol works, the interface gives a visual idea to the end user about the status of each replica at a given time step in the given protocol along with an overall information flow between the replicas. Users can also view the messages exchanged between the replicas, which will be visible on clicking the diagram at a timestep. At every phase, users would be able to see the status of the node, the messages received, and the decisions made based on the majority formed. The visual representation of the protocol looks similar to the protocol representation normally given in research paper protocol proposals. </p>
+                                        <p>At the end of each transaction, the user will get the option to visualize the blockchain formed and maintained. </p>
+                                        <li><h3>Business Layer</h3></li>
+                                        <p></p>
+                                        <p>The open-source implementation of PBFT has no provisions for visualization, hence necessary changes were made to extend it so that it can be visualized. The protocol is run in the backend and the real time log data is integrated with the business layer through socket to be able to visualize it in the front end. Once the protocol is triggered, the log and data from each node is aggregated and sent to the presentation layer to display the workflow and the stats at each node. Parsed log messages as received by the nodes to the front-end listener are published, and in real-time the status of the protocol can be viewed as it proceeds. </p>
+                                    </ul>
+                                    <p style="text-align:center;"><button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-times me-1"></i>
+                                        Close
+                                    </button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio item 2 modal popup-->
+        <div class="Design-modal modal fade" id="DesignModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><p style="text-align:right;"><img src="assets/img/close-icon.svg" width="35" height="35" alt="Close modal"/></p></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Technical approach details-->
+                                    <h2 class="text-uppercase" style="text-align:center;">ResilientDB</h2>
+                                    <p></p>
+                                    <p></p>
+                                    <p class="item-intro text-muted">ResilientDB is a data processing open source permissioned blockchain application which was created to enable implementation of any BFT protocol on it. ResilientDB is multithreaded and hence yields high-throughput consensus within its replicas. Currently the dashboard of resilientDB shows graphs for throughput of the replicas when the protocol is run, but there is no visualization of how the protocol works internally on the DB. Initially the visualization was planned to be built on top of resilientDB but due to the time constraints and understanding the complexity around running the protocol between containers using ssh and implementing this, the visualization project was later modified and was built on top of an open source PBFT implementation.</p>
+                                    <p>Research on resilientdb was done using docker and google cloud instances as explained below -</p>
+                                    <ul>
+                                        <li><h3>ResilientDB Docker Interaction</h3></li>
+                                        <p></p>
+                                        <p>After spending quite a lot of time in analysing the dashboard module of resilientDB the flow from frontend to backend was understood and eventually the flow between modules starting from runform.jsx to simrun.py was clear. It was found that from simrun.py, the resilientDB script was run in cloud instances using bash commands. After modifying the scripts here, a connection between docker containers and the host from where the containers were launched was established. It was partially achieved with the help of the python docker package. As per suggestions received, when resilientDB was made to run from within the containers, some issues were faced while understanding the procedure to be used to get the data required to visualize in the front end. It was getting more complicated to achieve the desired goal through docker, hence the focus was shifted to create cloud instances.</p>
+                                        <li><h3>Google Cloud Interactions</h3></li>
+                                        <p></p>
+                                        <p>Multiple google cloud instances were created to run as nodes and clients and then the team tried to run the resilientDB in these instances. Initially the team started to connect to instances through the host to understand how the underlying bash scripts work. Considering the timeframe ahead for completion of this project, the team was split to parallely work on the visualization part and over an independent stable PBFT algorithm. How to get resilientDB up and running within google cloud instances is still under study.</p>
+                                    </ul>
+                                    <p style="text-align:center;"><button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-times me-1"></i>
+                                        Close
+                                    </button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio item 2 modal popup-->
+        <div class="Design-modal modal fade" id="DesignModal3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><p style="text-align:right;"><img src="assets/img/close-icon.svg" width="35" height="35" alt="Close modal"/></p></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Technical approach details-->
+                                    <h2 class="text-uppercase" style="text-align: center;">Open source PBFT visualization</h2>
+                                    <p></p>
+                                    <p></p>
+                                    <p class="item-intro text-muted">Many open source PBFT implementations were checked in github. However, many implementations are either implemented in a language team is not familiar with or have many dependency/bug issues and hence, are difficult to work with. The PBFT implementation that was chosen for this visualization, <a href="https://github.com/soumyaxyz/Python-PBFT-Blockchain">(Source Code)</a> is the basic version where two clients and four replicas are present and a single message is being sent. This simple PBFT protocol was developed over HTTP, using Python3 and asyncio/aiohttp. This implementation creates different instances of client and replicas on various network ports in the localhost.</p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/Flowchart.JPG" alt="..." />
+                                    <p>Following code changes were made to visualize the algorithm and blockchain creation</p>
+                                    <ul>
+                                        <li>Created a front end by building the graphics framework of the website and the corresponding interactive API functions</li>
+                                        <li>Functions created to display the real time data during a phase and after a phase at each replica when the algorithm is run in the backend</li>
+                                        <li>Changed/added the published information so the front end can capture it and use the data to enhance the visualization of the transaction flow</li>
+                                        <li>Debugged and fixed an issue with the current implementation with regards to the failure to add a block to the blockchain after a certain interval(ckpt_interval) of messages are received</li>
+                                        <li>Debugged and fixed an issue with the current implementation with regard to the failure to add a blocks to the blockchain for the last replica</li>
+                                        <li>Added new features to the front end to visualize blockchain</li>
+                                        <li>Establish connection between front and backend</li>
+                                    </ul>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                    <p style="text-align:center;"><button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-times me-1"></i>
+                                        Close
+                                    </button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
