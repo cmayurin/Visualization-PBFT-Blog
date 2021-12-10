@@ -27,7 +27,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>
+                <a class="navbar-brand" href="#page-top">PREETY PBFT</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -91,7 +91,7 @@
                     <p>PBFT protocol is executed with a number of nodes ‘n’, where n>=3f + 1 and f is the number of byzantine nodes. One of the nodes acts as the primary node with some additional responsibilities. When the client sends a digitally signed transaction to a primary replica (which is elected by all other replicas in the block chain), it is responsible to coordinate, assign sequence number and send the ordered requests to all the other nodes called replicas (R1, R2 and R3). This phase is known as the ‘pre-prepare phase’. Now all the replicas send the pre-prepare message they received from primary to all the other replicas (including the primary node). This phase is known as the ‘prepare phase’. By the end of the prepare phase, all the good replicas would be able to know that the majority of other replicas have received the same transaction as they did and hence go ahead and prepare themselves for the commit. All the good replicas now create a ‘prepare certificate’ and send it to all the other replicas (including the primary). Hence, by the end of the commit phase if the majority of replicas send the same prepare certificate, all the good replicas will know that not only is there a majority of replicas who have received the same transaction but all the other good replicas have also sent the same prepare certificate. Hence consensus is reached for the given transaction, so replicas go ahead and execute the transaction and all the replicas including the primary reply to the client acknowledging the transaction.</p>
                     <p></p>
                     <p>&nbsp;</p>
-                    <p style="text-align:center;"><img src="assets/img/PBFT.jpg" width="800" height="350" alt="Pbft"></p>
+                    <p style="text-align:center;"><img src="assets/img/PBFT_image.JPG" width="800" height="350" alt="Pbft"></p>
                     <p></p>
                     <p>&nbsp;</p>
                     <h3>View Change</h3>
