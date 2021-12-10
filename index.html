@@ -36,7 +36,8 @@
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#Blockchain">Blockchain</a></li>
                         <li class="nav-item"><a class="nav-link" href="#PBFT">PBFT Algorithm</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#Design">Visualization Design</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Design">Design</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Visualization">PBFT Visualization</a></li>
                         <li class="nav-item"><a class="nav-link" href="#road">Roadmap</a></li>
                         <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                     </ul>
@@ -68,11 +69,9 @@
                     </div>
                     <div class="col-md-4">
                         <h4 class="my-3">Blockchain Applications</h4>
-                        <p class="text-muted">
-                            <p>Cryptocurrency - Major applications build on blockchain technology such as Bitcoin, Etherium etc.</p>
-                            <p>Financial services - Many banks are investing to use distributed ledger for banking by creating private blockchains for increase in efficiency along with reduction in cost</p>
-                            <p>Supply chain - Retailers and consumers can use blockchain technology to track their products from warehouses to stores. Many retailers have started building backend blockhain system to manage their supply chain.</p>
-                        </p>
+                        <p class="text-muted">Cryptocurrency - Major applications build on blockchain technology such as Bitcoin, Etherium etc.</p>
+                        <p class="text-muted">Financial services - Many banks are investing to use distributed ledger for banking by creating private blockchains for increase in efficiency along with reduction in cost</p>
+                        <p class="text-muted">Supply chain - Retailers and consumers can use blockchain technology to track their products from warehouses to stores. Many retailers have started building backend blockhain system to manage their supply chain.</p>
                     </div>
                 </div>
             </div>
@@ -82,18 +81,23 @@
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">PBFT (Practical-Byzantine-Fault-Tolerance) Protocol</h2>
                 </div>
-                    <p style="text-align:center;"><img src="https://appinventiv.com/wp-content/uploads/sites/1/2019/10/A-Guide-to-Understand-Blockchain-Consensus-Algorithms.gif" alt="" width="800"></p>
                     <p>PBFT consensus protocol is the most basic BFT protocol based on voting which was proposed in the late 90s. It was designed to be able to tolerate a fixed fraction of malicious nodes in the network and still be able to reach consensus on a transaction proposed.</p>
+                    <p style="text-align:center;"><img src="https://appinventiv.com/wp-content/uploads/sites/1/2019/10/A-Guide-to-Understand-Blockchain-Consensus-Algorithms.gif" alt="" width="800"></p>
                     <p></p>
                     <p></p>
                     <p></p>
-                    <p></p>
+                    <p>&nbsp;</p>
                     <h3>Algorithm Design</h3>
                     <p>PBFT protocol is executed with a number of nodes ‘n’, where n>=3f + 1 and f is the number of byzantine nodes. One of the nodes acts as the primary node with some additional responsibilities. When the client sends a digitally signed transaction to a primary replica (which is elected by all other replicas in the block chain), it is responsible to coordinate, assign sequence number and send the ordered requests to all the other nodes called replicas (R1, R2 and R3). This phase is known as the ‘pre-prepare phase’. Now all the replicas send the pre-prepare message they received from primary to all the other replicas (including the primary node). This phase is known as the ‘prepare phase’. By the end of the prepare phase, all the good replicas would be able to know that the majority of other replicas have received the same transaction as they did and hence go ahead and prepare themselves for the commit. All the good replicas now create a ‘prepare certificate’ and send it to all the other replicas (including the primary). Hence, by the end of the commit phase if the majority of replicas send the same prepare certificate, all the good replicas will know that not only is there a majority of replicas who have received the same transaction but all the other good replicas have also sent the same prepare certificate. Hence consensus is reached for the given transaction, so replicas go ahead and execute the transaction and all the replicas including the primary reply to the client acknowledging the transaction.</p>
+                    <p></p>
+                    <p>&nbsp;</p>
                     <p style="text-align:center;"><img src="assets/img/PBFT.jpg" width="800" height="350" alt="Pbft"></p>
+                    <p></p>
+                    <p>&nbsp;</p>
                     <h3>View Change</h3>
                     <p>If the majority replicas didn’t send the same transaction by the end of prepare phase as the one a particular replica did (For e.g.: R1), R1 detects that primary is faulty and does not send the prepare certificate and instead it sends a view change request to replace the existing primary. Hence whenever there is some malicious behaviour of primary detected, nodes send view change requests. When enough votes representing majority (2/3rd) are received for view change, the existing primary is replaced with a new primary and the process repeats until an honest primary is elected and is working properly.</p>
                     <p></p>
+                    <p>&nbsp;</p>
                     <h3>Advantages and Applications</h3>
                         <ul>
                             <li>Tolerates a fixed fraction of byzantine behaviourcin the network which makes it reliable</li>
@@ -161,6 +165,17 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+        <!-- PBFT Visualization-->
+        <section class="page-section" id="Visualization">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">PBFT Protocol Visualization</h2>
+                </div>
+                <p style="text-align:center;"><video width="900" height="500" controls>
+                    <source src="/assets/bunny.mp4" type="video/mp4">
+                </video></p>
             </div>
         </section>
         <!-- Roadmap-->
@@ -241,7 +256,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-                    <h3 class="section-subheading text-muted">All the team members are Computer Science Masters students from University of California, Davis, USA.</h3>
+                    <h3 class="section-subheading text-muted"> We are Computer Science Masters students from University of California, Davis, USA.</h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
